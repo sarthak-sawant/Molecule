@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: molecule-backend
+    env: node
+    plan: starter
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: JWT_SECRET
+        generateValue: true
+      - key: TEACHER_SECRET_CODE
+        sync: false
+    disk:
+      name: molecule-data
+      mountPath: /opt/render/project/src/backend
+      sizeGB: 1
